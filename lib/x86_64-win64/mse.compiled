@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<CONFIG>
-  <Compiler Value="D:\lazarus\fpc\3.0.4\bin\x86_64-win64\fpc.exe" Date="1317892579"/>
-  <Params Value=" -MObjFPC -Scghi -O1 -g -gl -WG -l -vewnhibq -Fid:\Projects\mse5\lib\x86_64-win64 -Fud:\lazarus\lcl\units\x86_64-win64\win32 -Fud:\lazarus\lcl\units\x86_64-win64 -Fud:\lazarus\components\lazutils\lib\x86_64-win64 -Fud:\lazarus\packager\units\x86_64-win64 -Fud:\Projects\mse5\ -FUd:\Projects\mse5\lib\x86_64-win64\ -FEd:\Projects\mse5\ -od:\Projects\mse5\mse.exe -dLCL -dLCLwin32 mse.lpr"/>
-</CONFIG>

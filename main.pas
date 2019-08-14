@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, Menus,
-  ComCtrls, ActnList,
+  ComCtrls, ActnList, ExtCtrls, Grids,
 
 {$IFDEF WINDOWS}
   previewerwin;
@@ -17,6 +17,7 @@ type
   { TMainForm }
 
   TMainForm = class(TForm)
+    PropertyGrid: TDrawGrid;
     FileNewAction: TAction;
     ActionList: TActionList;
     ImageList: TImageList;
@@ -27,8 +28,13 @@ type
     MenuItem4: TMenuItem;
     MenuItem5: TMenuItem;
     MenuItem6: TMenuItem;
+    ProjectPanel: TPanel;
+    Splitter1: TSplitter;
+    Splitter2: TSplitter;
+    StatusBar: TStatusBar;
     ToolBar: TToolBar;
     ToolButton1: TToolButton;
+    ProjectTree: TTreeView;
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
   private

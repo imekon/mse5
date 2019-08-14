@@ -1,10 +1,10 @@
 object MainForm: TMainForm
   Left = 248
-  Height = 546
+  Height = 633
   Top = 129
   Width = 966
   Caption = 'Model Scene Editor'
-  ClientHeight = 526
+  ClientHeight = 613
   ClientWidth = 966
   Menu = MainMenu
   OnCreate = FormCreate
@@ -25,10 +25,61 @@ object MainForm: TMainForm
       Action = FileNewAction
     end
   end
+  object ProjectPanel: TPanel
+    Left = 0
+    Height = 564
+    Top = 26
+    Width = 202
+    Align = alLeft
+    ClientHeight = 564
+    ClientWidth = 202
+    TabOrder = 1
+    object ProjectTree: TTreeView
+      Left = 1
+      Height = 287
+      Top = 1
+      Width = 200
+      Align = alTop
+      TabOrder = 0
+    end
+    object Splitter1: TSplitter
+      Cursor = crVSplit
+      Left = 1
+      Height = 5
+      Top = 288
+      Width = 200
+      Align = alTop
+      ResizeAnchor = akTop
+    end
+    object PropertyGrid: TDrawGrid
+      Left = 1
+      Height = 270
+      Top = 293
+      Width = 200
+      Align = alClient
+      ColCount = 2
+      DefaultColWidth = 90
+      ExtendedSelect = False
+      TabOrder = 2
+    end
+  end
+  object StatusBar: TStatusBar
+    Left = 0
+    Height = 23
+    Top = 590
+    Width = 966
+    Panels = <>
+  end
+  object Splitter2: TSplitter
+    Left = 202
+    Height = 564
+    Top = 26
+    Width = 5
+  end
   object MainMenu: TMainMenu
     Images = ImageList
-    left = 78
-    top = 48
+    left = 248
+    top = 56
     object MenuItem1: TMenuItem
       Caption = '&File'
       object MenuItem2: TMenuItem

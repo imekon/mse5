@@ -8,8 +8,10 @@ uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, Menus,
   ComCtrls, ActnList, ExtCtrls, Grids,
 
+  propgridhelper, proj,
+
 {$IFDEF WINDOWS}
-  previewerwin;
+  previewerwin, Types;
 {$ENDIF}
 
 type
@@ -37,10 +39,15 @@ type
     ProjectTree: TTreeView;
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
+    procedure OnPropertyGridDrawCell(Sender: TObject; aCol, aRow: Integer;
+      aRect: TRect; aState: TGridDrawState);
   private
 {$IFDEF WINDOWS}
     _previewer: TPreviewerWindows;
 {$ENDIF}
+    _propertyGridHelper: TPropertyGridHelper;
+
+    _project: TProject;
   public
 
   end;
@@ -59,11 +66,21 @@ begin
 {$IFDEF WINDOWS}
   _previewer := TPreviewerWindows.Create;
 {$ENDIF}
+  _propertyGridHelper := TPropertyGridHelper.Create(PropertyGrid);
+  _project := TProject.Create;
 end;
 
 procedure TMainForm.FormDestroy(Sender: TObject);
 begin
   _previewer.Free;
+  _propertyGridHelper.Free;
+  _project.Free;
+end;
+
+procedure TMainForm.OnPropertyGridDrawCell(Sender: TObject; aCol,
+  aRow: Integer; aRect: TRect; aState: TGridDrawState);
+begin
+  _propertyGridHelper.DrawGridCell(aCol, aRow, aRect, aState);
 end;
 
 end.

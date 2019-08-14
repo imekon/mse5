@@ -7,7 +7,8 @@ uses
   cthreads,
   {$ENDIF}{$ENDIF}
   Interfaces, // this includes the LCL widgetset
-  Forms, main, previewer, previewerwin, props, propman, shape
+  Forms, main, previewer, previewerwin, props, propman, shape, propgridhelper,
+  proj, vector
   { you can add units after this };
 
 {$R *.res}

@@ -12,12 +12,15 @@ type
   private
     _properties: TProperties;
     function GetDirty: boolean;
+    function GetCount: integer;
   public
     constructor Create;
     destructor Destroy; override;
     function FindProperty(name: string): TProperty;
     procedure AddProperty(name: string; prop: TProperty);
+
     property IsDirty: boolean read GetDirty;
+    property Count: integer read GetCount;
   end;
 
 implementation
@@ -49,6 +52,11 @@ begin
        exit;
     end;
   end;
+end;
+
+function TPropertyManager.GetCount: integer;
+begin
+  result := _properties.Count;
 end;
 
 function TPropertyManager.FindProperty(name: string): TProperty;

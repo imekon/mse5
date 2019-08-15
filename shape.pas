@@ -22,6 +22,7 @@ type
     function GetProperty(name: string): TProperty;
 
     class function MakeCamera(name: string): TShape; static;
+    class function MakePointLight(name: string): TShape; static;
 
     property IsDirty: boolean read GetDirty;
     property PropertyCount: integer read GetPropertyCount;
@@ -83,6 +84,24 @@ begin
   vectorProp.Value := TVector.Create(0.0, 0.0, -5.0);
   shape._propertyManager.AddProperty('LookAt', vectorProp);
 
+  result := shape;
+end;
+
+class function TShape.MakePointLight(name: string): TShape;
+var
+  shape: TShape;
+  nameProp: TStringProperty;
+  vectorProp: TVectorProperty;
+
+begin
+  shape := TShape.Create(stPointLight);
+
+  nameProp := shape.GetProperty('Name') as TStringProperty;
+  nameProp.Value := name;
+
+  vectorProp := TVectorProperty.Create('Translation');
+  vectorProp.Value := TVector.Create(0.0, 0.0, 0.0);
+  shape._propertyManager.AddProperty('Translation', vectorProp);
   result := shape;
 end;
 

@@ -19,6 +19,10 @@ type
   { TMainForm }
 
   TMainForm = class(TForm)
+    FileExitAction: TAction;
+    FileSaveAsAction: TAction;
+    FileSaveAction: TAction;
+    FileOpenAction: TAction;
     PropertyGrid: TDrawGrid;
     FileNewAction: TAction;
     ActionList: TActionList;
@@ -37,8 +41,15 @@ type
     ToolBar: TToolBar;
     ToolButton1: TToolButton;
     ProjectTree: TTreeView;
+    ToolButton2: TToolButton;
+    ToolButton3: TToolButton;
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
+    procedure OnFileExit(Sender: TObject);
+    procedure OnFileNew(Sender: TObject);
+    procedure OnFileOpen(Sender: TObject);
+    procedure OnFileSave(Sender: TObject);
+    procedure OnFileSaveAs(Sender: TObject);
     procedure OnPropertyGridDrawCell(Sender: TObject; aCol, aRow: Integer;
       aRect: TRect; aState: TGridDrawState);
   private
@@ -66,6 +77,7 @@ begin
 {$IFDEF WINDOWS}
   _previewer := TPreviewerWindows.Create;
 {$ENDIF}
+
   _propertyGridHelper := TPropertyGridHelper.Create(PropertyGrid);
   _project := TProject.Create;
 end;
@@ -75,6 +87,31 @@ begin
   _previewer.Free;
   _propertyGridHelper.Free;
   _project.Free;
+end;
+
+procedure TMainForm.OnFileExit(Sender: TObject);
+begin
+  Close;
+end;
+
+procedure TMainForm.OnFileNew(Sender: TObject);
+begin
+  //
+end;
+
+procedure TMainForm.OnFileOpen(Sender: TObject);
+begin
+  //
+end;
+
+procedure TMainForm.OnFileSave(Sender: TObject);
+begin
+  //
+end;
+
+procedure TMainForm.OnFileSaveAs(Sender: TObject);
+begin
+  //
 end;
 
 procedure TMainForm.OnPropertyGridDrawCell(Sender: TObject; aCol,

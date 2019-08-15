@@ -13,9 +13,15 @@ type
     _shapes: TShapeList;
     _camera: TShape;
     _light: TShape;
+
+    function GetShapeCount: integer;
+    function GetShape(index: integer): TShape;
   public
     constructor Create;
     destructor Destroy; override;
+
+    property ShapeCount: integer read GetShapeCount;
+    property Shapes[index: integer]: TShape read GetShape;
   end;
 
 implementation
@@ -35,6 +41,22 @@ destructor TProject.Destroy;
 begin
   inherited;
   _shapes.Free;
+end;
+
+function TProject.GetShapeCount: integer;
+begin
+  result := _shapes.Count;
+end;
+
+function TProject.GetShape(index: integer): TShape;
+begin
+  if (index < 0) or (index >= _shapes.Count) then
+  begin
+    result := nil;
+    exit;
+  end;
+
+  result := _shapes[index];
 end;
 
 end.

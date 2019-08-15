@@ -8,7 +8,7 @@ uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, Menus,
   ComCtrls, ActnList, ExtCtrls, Grids,
 
-  propgridhelper, proj,
+  projtreehelper, propgridhelper, proj,
 
 {$IFDEF WINDOWS}
   previewerwin, Types;
@@ -56,6 +56,8 @@ type
 {$IFDEF WINDOWS}
     _previewer: TPreviewerWindows;
 {$ENDIF}
+
+    _projectTreeHelper: TProjectTreeHelper;
     _propertyGridHelper: TPropertyGridHelper;
 
     _project: TProject;
@@ -78,14 +80,18 @@ begin
   _previewer := TPreviewerWindows.Create;
 {$ENDIF}
 
-  _propertyGridHelper := TPropertyGridHelper.Create(PropertyGrid);
   _project := TProject.Create;
+  _projectTreeHelper := TProjectTreeHelper.Create(ProjectTree, _project);
+  _propertyGridHelper := TPropertyGridHelper.Create(PropertyGrid);
+
+  _projectTreeHelper.BuildTree;
 end;
 
 procedure TMainForm.FormDestroy(Sender: TObject);
 begin
   _previewer.Free;
   _propertyGridHelper.Free;
+  _projectTreeHelper.Free;
   _project.Free;
 end;
 

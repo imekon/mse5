@@ -5,24 +5,28 @@ unit projtreehelper;
 interface
 
 uses
-  Classes, SysUtils, ComCtrls, proj;
+  Classes, SysUtils, ComCtrls, proj, shape;
 
 type
   TProjectTreeHelper = class
   private
     _project: TProject;
     _treeView: TTreeView;
+    _selected: TShape;
   public
     constructor Create(treeView: TTreeView; project: TProject);
     destructor Destroy; override;
 
     procedure BuildTree;
+    procedure SelectionChanged;
+
+    property Selected: TShape read _selected;
   end;
 
 implementation
 
 uses
-  shape, props;
+  props;
 
 constructor TProjectTreeHelper.Create(treeView: TTreeView; project: TProject);
 begin
@@ -54,6 +58,11 @@ begin
     node := _treeView.Items.AddChild(root, nameProperty.Value);
     node.Data := shape;
   end;
+end;
+
+procedure TProjectTreeHelper.SelectionChanged;
+begin
+  _selected := TShape(_treeView.Selected.Data);
 end;
 
 end.

@@ -18,6 +18,7 @@ type
     destructor Destroy; override;
     function FindProperty(name: string): TProperty;
     procedure AddProperty(name: string; prop: TProperty);
+    function GetProperty(index: integer): TProperty;
 
     property IsDirty: boolean read GetDirty;
     property Count: integer read GetCount;
@@ -67,6 +68,17 @@ end;
 procedure TPropertyManager.AddProperty(name: string; prop: TProperty);
 begin
   _properties[name] := prop;
+end;
+
+function TPropertyManager.GetProperty(index: integer): TProperty;
+begin
+  if (index < 0) or (index >= _properties.Count) then
+  begin
+     result := nil;
+     exit;
+  end;
+
+  result := TProperty(_properties.Items[index]);
 end;
 
 end.

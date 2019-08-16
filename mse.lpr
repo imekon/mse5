@@ -14,6 +14,7 @@ uses
 {$R *.res}
 
 begin
+  Application.Scaled:=True;
   Application.Title:='Model Scene Editor';
   RequireDerivedFormResource:=True;
   Application.Initialize;

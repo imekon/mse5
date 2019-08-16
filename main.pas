@@ -50,6 +50,7 @@ type
     procedure OnFileOpen(Sender: TObject);
     procedure OnFileSave(Sender: TObject);
     procedure OnFileSaveAs(Sender: TObject);
+    procedure OnProjectSelectionChanged(Sender: TObject);
     procedure OnPropertyGridDrawCell(Sender: TObject; aCol, aRow: Integer;
       aRect: TRect; aState: TGridDrawState);
   private
@@ -118,6 +119,13 @@ end;
 procedure TMainForm.OnFileSaveAs(Sender: TObject);
 begin
   //
+end;
+
+procedure TMainForm.OnProjectSelectionChanged(Sender: TObject);
+begin
+  _projectTreeHelper.SelectionChanged;
+  _propertyGridHelper.Selected := _projectTreeHelper.Selected;
+  _project.Dump;
 end;
 
 procedure TMainForm.OnPropertyGridDrawCell(Sender: TObject; aCol,

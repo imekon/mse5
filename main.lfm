@@ -51,6 +51,7 @@ object MainForm: TMainForm
       Width = 200
       Align = alTop
       TabOrder = 0
+      OnSelectionChanged = OnProjectSelectionChanged
     end
     object Splitter1: TSplitter
       Cursor = crVSplit

@@ -14,9 +14,11 @@ type
     _dirty: boolean;
     function GetDirty: boolean;
   public
-    constructor Create(name: string); virtual;
+    constructor Create(const aName: string); virtual;
     destructor Destroy; override;
+    function ToString: string; override;
     property IsDirty: boolean read GetDirty;
+    property Name: string read _name;
   end;
 
   generic TReadOnlyProperty<T> = class(TProperty)
@@ -24,7 +26,8 @@ type
     _value: T;
     function GetValue: T; virtual;
   public
-    constructor Create(name: string; value: T); virtual;
+    constructor Create(const aName: string; value: T); virtual;
+    function ToString: string; override;
     property Value: T read GetValue;
   end;
 
@@ -34,6 +37,7 @@ type
     function GetValue: T; virtual;
     procedure SetValue(value: T); virtual;
   public
+    function ToString: string; override;
     property Value: T read GetValue write SetValue;
   end;
 
@@ -46,9 +50,9 @@ type
 
 implementation
 
-constructor TProperty.Create(name: string);
+constructor TProperty.Create(const aName: string);
 begin
-  _name := name;
+  _name := aName;
   _dirty := false;
 end;
 
@@ -62,9 +66,14 @@ begin
   result := _dirty;
 end;
 
-constructor TReadOnlyProperty.Create(name: string; value: T);
+function TProperty.ToString: string;
 begin
-  inherited Create(name);
+  result := 'BASE';
+end;
+
+constructor TReadOnlyProperty.Create(const aName: string; value: T);
+begin
+  inherited Create(aName);
   _value := value;
 end;
 
@@ -73,9 +82,19 @@ begin
   result := _value;
 end;
 
+function TReadOnlyProperty.ToString: string;
+begin
+  result := 'READ ONLY';
+end;
+
 function TValueProperty.GetValue: T;
 begin
   result := _value;
+end;
+
+function TValueProperty.ToString: string;
+begin
+  result := 'VALUE';
 end;
 
 procedure TValueProperty.SetValue(value: T);

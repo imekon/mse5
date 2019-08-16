@@ -20,6 +20,7 @@ type
     constructor Create(stShape: TShapeType);
     destructor Destroy; override;
     function GetProperty(name: string): TProperty;
+    function GetProperty(index: integer): TProperty;
 
     class function MakeCamera(name: string): TShape; static;
     class function MakePointLight(name: string): TShape; static;
@@ -62,6 +63,11 @@ end;
 function TShape.GetProperty(name: string): TProperty;
 begin
   result := _propertyManager.FindProperty(name);
+end;
+
+function TShape.GetProperty(index: integer): TProperty;
+begin
+  result := _propertyManager.GetProperty(index);
 end;
 
 class function TShape.MakeCamera(name: string): TShape;

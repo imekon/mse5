@@ -19,11 +19,11 @@ type
   public
     constructor Create(stShape: TShapeType);
     destructor Destroy; override;
-    function GetProperty(name: string): TProperty;
+    function GetProperty(const name: string): TProperty;
     function GetProperty(index: integer): TProperty;
 
-    class function MakeCamera(name: string): TShape; static;
-    class function MakePointLight(name: string): TShape; static;
+    class function MakeCamera(const name: string): TShape; static;
+    class function MakePointLight(const name: string): TShape; static;
 
     property IsDirty: boolean read GetDirty;
     property PropertyCount: integer read GetPropertyCount;
@@ -60,7 +60,7 @@ begin
   result := _propertyManager.Count;
 end;
 
-function TShape.GetProperty(name: string): TProperty;
+function TShape.GetProperty(const name: string): TProperty;
 begin
   result := _propertyManager.FindProperty(name);
 end;
@@ -70,7 +70,7 @@ begin
   result := _propertyManager.GetProperty(index);
 end;
 
-class function TShape.MakeCamera(name: string): TShape;
+class function TShape.MakeCamera(const name: string): TShape;
 var
   shape: TShape;
   nameProp: TStringProperty;
@@ -93,7 +93,7 @@ begin
   result := shape;
 end;
 
-class function TShape.MakePointLight(name: string): TShape;
+class function TShape.MakePointLight(const name: string): TShape;
 var
   shape: TShape;
   nameProp: TStringProperty;

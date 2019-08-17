@@ -78,7 +78,7 @@ begin
      exit;
   end;
 
-  result := TProperty(_properties.Items[index]);
+  result := TProperty(_properties.Data[index]);
 end;
 
 end.

@@ -35,6 +35,9 @@ type
 implementation
 
 constructor TProject.Create;
+var
+  shape: TShape;
+
 begin
   {$IFDEF ENABLE_LOGGING}
   Assign(_logging, 'output.log');
@@ -49,6 +52,12 @@ begin
 
   _light := TShape.MakePointLight('light');
   _shapes.Add(_light);
+
+  shape := TShape.MakeGeneralShape('cube', stCube);
+  _shapes.Add(shape);
+
+  shape := TShape.MakeGeneralShape('plane', stPlane);
+  _shapes.Add(shape);
 
   Dump;
 end;

@@ -5,7 +5,7 @@ unit propgridhelper;
 interface
 
 uses
-  Classes, SysUtils, Grids, props, shape;
+  Classes, SysUtils, Grids, shape;
 
 type
   TPropertyGridHelper = class
@@ -23,6 +23,9 @@ type
   end;
 
 implementation
+
+uses
+  props, vector, colour;
 
 constructor TPropertyGridHelper.Create(grid: TDrawGrid);
 begin
@@ -51,12 +54,14 @@ begin
   end;
 
   _grid.RowCount := shape.PropertyCount + 1;
+  _grid.Refresh;
 end;
 
 procedure TPropertyGridHelper.DrawGridCell(aCol, aRow: Integer;
   aRect: TRect; aState: TGridDrawState);
 var
   prop: TProperty;
+  value: string;
 
 begin
   with _grid.Canvas do
@@ -67,9 +72,27 @@ begin
 
       prop := _selected.GetProperty(aRow - 1);
 
+      if aCol = 1 then
+      begin
+        if prop is TStringProperty then
+           value := (prop as TStringProperty).Value;
+
+        if prop is TShapeTypeProperty then
+           value := TShape.GetShapeTypeDescription((prop as TShapeTypeProperty).Value);
+
+        if prop is TIntegerProperty then
+           value := IntToStr((prop as TIntegerProperty).Value);
+
+        if prop is TVectorProperty then
+           value := TVector.GetDescription((prop as TVectorProperty).Value);
+
+        if prop is TColourProperty then
+           value := TColour.GetDescription((prop as TColourProperty).Value);
+      end;
+
       case aCol of
         0: TextOut(aRect.Left + 5, aRect.Top + 2, prop.Name);
-        1: TextOut(aRect.Left + 5, aRect.Top + 2, 'XXX');
+        1: TextOut(aRect.Left + 5, aRect.Top + 2, value);
       end;
     end
     else

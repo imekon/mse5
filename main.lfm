@@ -71,6 +71,7 @@ object MainForm: TMainForm
       ColCount = 2
       DefaultColWidth = 90
       ExtendedSelect = False
+      RowCount = 1
       TabOrder = 2
       OnDrawCell = OnPropertyGridDrawCell
     end

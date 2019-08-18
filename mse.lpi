@@ -37,7 +37,7 @@
         <PackageName Value="LCL"/>
       </Item1>
     </RequiredPackages>
-    <Units Count="12">
+    <Units Count="14">
       <Unit0>
         <Filename Value="mse.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -89,6 +89,14 @@
         <Filename Value="colour.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit11>
+      <Unit12>
+        <Filename Value="coordhelper.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit12>
+      <Unit13>
+        <Filename Value="graphic.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit13>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

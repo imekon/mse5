@@ -11,7 +11,7 @@ uses
   projtreehelper, propgridhelper, proj,
 
 {$IFDEF WINDOWS}
-  previewerwin, Types;
+  previewerbasic, Types;
 {$ENDIF}
 
 type
@@ -19,10 +19,29 @@ type
   { TMainForm }
 
   TMainForm = class(TForm)
+    BottomViewAction: TAction;
+    TopViewAction: TAction;
+    RightViewAction: TAction;
+    LeftViewAction: TAction;
+    BackViewAction: TAction;
+    FrontViewAction: TAction;
+    CameraViewAction: TAction;
     FileExitAction: TAction;
     FileSaveAsAction: TAction;
     FileSaveAction: TAction;
     FileOpenAction: TAction;
+    MenuItem10: TMenuItem;
+    MenuItem11: TMenuItem;
+    MenuItem12: TMenuItem;
+    MenuItem13: TMenuItem;
+    N4: TMenuItem;
+    N3: TMenuItem;
+    N2: TMenuItem;
+    MenuItem7: TMenuItem;
+    MenuItem8: TMenuItem;
+    MenuItem9: TMenuItem;
+    N1: TMenuItem;
+    PreviewBox: TPaintBox;
     PropertyGrid: TDrawGrid;
     FileNewAction: TAction;
     ActionList: TActionList;
@@ -45,17 +64,25 @@ type
     ToolButton3: TToolButton;
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
+    procedure OnBackView(Sender: TObject);
+    procedure OnBottomView(Sender: TObject);
+    procedure OnCameraView(Sender: TObject);
     procedure OnFileExit(Sender: TObject);
     procedure OnFileNew(Sender: TObject);
     procedure OnFileOpen(Sender: TObject);
     procedure OnFileSave(Sender: TObject);
     procedure OnFileSaveAs(Sender: TObject);
+    procedure OnFrontView(Sender: TObject);
+    procedure OnLeftView(Sender: TObject);
+    procedure OnPreviewerPaint(Sender: TObject);
     procedure OnProjectSelectionChanged(Sender: TObject);
     procedure OnPropertyGridDrawCell(Sender: TObject; aCol, aRow: Integer;
       aRect: TRect; aState: TGridDrawState);
+    procedure OnRightView(Sender: TObject);
+    procedure OnTopView(Sender: TObject);
   private
 {$IFDEF WINDOWS}
-    _previewer: TPreviewerWindows;
+    _previewer: TPreviewerBasic;
 {$ENDIF}
 
     _projectTreeHelper: TProjectTreeHelper;
@@ -71,6 +98,9 @@ var
 
 implementation
 
+uses
+  previewer;
+
 {$R *.lfm}
 
 { TMainForm }
@@ -78,7 +108,7 @@ implementation
 procedure TMainForm.FormCreate(Sender: TObject);
 begin
 {$IFDEF WINDOWS}
-  _previewer := TPreviewerWindows.Create;
+  _previewer := TPreviewerBasic.Create(PreviewBox);
 {$ENDIF}
 
   _project := TProject.Create;
@@ -94,6 +124,21 @@ begin
   _propertyGridHelper.Free;
   _projectTreeHelper.Free;
   _project.Free;
+end;
+
+procedure TMainForm.OnBackView(Sender: TObject);
+begin
+  _previewer.View := pvBack;
+end;
+
+procedure TMainForm.OnBottomView(Sender: TObject);
+begin
+  _previewer.View := pvBottom;
+end;
+
+procedure TMainForm.OnCameraView(Sender: TObject);
+begin
+  _previewer.View := pvCamera;
 end;
 
 procedure TMainForm.OnFileExit(Sender: TObject);
@@ -121,11 +166,35 @@ begin
   //
 end;
 
+procedure TMainForm.OnFrontView(Sender: TObject);
+begin
+  _previewer.View := pvFront;
+end;
+
+procedure TMainForm.OnLeftView(Sender: TObject);
+begin
+  _previewer.View := pvLeft;
+end;
+
+procedure TMainForm.OnPreviewerPaint(Sender: TObject);
+begin
+  _previewer.Paint;
+end;
+
+procedure TMainForm.OnRightView(Sender: TObject);
+begin
+  _previewer.View := pvRight;
+end;
+
+procedure TMainForm.OnTopView(Sender: TObject);
+begin
+  _previewer.View := pvTop;
+end;
+
 procedure TMainForm.OnProjectSelectionChanged(Sender: TObject);
 begin
   _projectTreeHelper.SelectionChanged;
   _propertyGridHelper.Selected := _projectTreeHelper.Selected;
-  _project.Dump;
 end;
 
 procedure TMainForm.OnPropertyGridDrawCell(Sender: TObject; aCol,

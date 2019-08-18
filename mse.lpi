@@ -54,7 +54,7 @@
         <IsPartOfProject Value="True"/>
       </Unit2>
       <Unit3>
-        <Filename Value="previewerwin.pas"/>
+        <Filename Value="previewerbasic.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit3>
       <Unit4>

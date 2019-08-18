@@ -58,6 +58,8 @@ begin
     node := _treeView.Items.AddChild(root, nameProperty.Value);
     node.Data := shape;
   end;
+
+  root.Expand(true);
 end;
 
 procedure TProjectTreeHelper.SelectionChanged;

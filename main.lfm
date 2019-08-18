@@ -89,6 +89,14 @@ object MainForm: TMainForm
     Top = 26
     Width = 5
   end
+  object PreviewBox: TPaintBox
+    Left = 207
+    Height = 564
+    Top = 26
+    Width = 759
+    Align = alClient
+    OnPaint = OnPreviewerPaint
+  end
   object MainMenu: TMainMenu
     Images = ImageList
     left = 248
@@ -109,6 +117,39 @@ object MainForm: TMainForm
       end
       object MenuItem6: TMenuItem
         Action = FileExitAction
+      end
+    end
+    object MenuItem7: TMenuItem
+      Caption = '&View'
+      object MenuItem8: TMenuItem
+        Action = CameraViewAction
+      end
+      object N1: TMenuItem
+        Caption = '-'
+      end
+      object MenuItem9: TMenuItem
+        Action = FrontViewAction
+      end
+      object MenuItem10: TMenuItem
+        Action = BackViewAction
+      end
+      object N2: TMenuItem
+        Caption = '-'
+      end
+      object MenuItem11: TMenuItem
+        Action = LeftViewAction
+      end
+      object MenuItem12: TMenuItem
+        Action = RightViewAction
+      end
+      object N3: TMenuItem
+        Caption = '-'
+      end
+      object N4: TMenuItem
+        Action = TopViewAction
+      end
+      object MenuItem13: TMenuItem
+        Action = BottomViewAction
       end
     end
   end
@@ -246,6 +287,41 @@ object MainForm: TMainForm
       Category = 'File'
       Caption = 'E&xit'
       OnExecute = OnFileExit
+    end
+    object CameraViewAction: TAction
+      Category = 'View'
+      Caption = '&Camera'
+      OnExecute = OnCameraView
+    end
+    object FrontViewAction: TAction
+      Category = 'View'
+      Caption = '&Front'
+      OnExecute = OnFrontView
+    end
+    object BackViewAction: TAction
+      Category = 'View'
+      Caption = '&Back'
+      OnExecute = OnBackView
+    end
+    object LeftViewAction: TAction
+      Category = 'View'
+      Caption = '&Left'
+      OnExecute = OnLeftView
+    end
+    object RightViewAction: TAction
+      Category = 'View'
+      Caption = '&Right'
+      OnExecute = OnRightView
+    end
+    object TopViewAction: TAction
+      Category = 'View'
+      Caption = '&Top'
+      OnExecute = OnTopView
+    end
+    object BottomViewAction: TAction
+      Category = 'View'
+      Caption = 'B&ottom'
+      OnExecute = OnBottomView
     end
   end
 end

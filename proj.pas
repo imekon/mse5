@@ -5,7 +5,7 @@ unit proj;
 interface
 
 uses
-  Classes, SysUtils, LazLoggerBase, props, shape;
+  Classes, SysUtils, LazLoggerBase, shape;
 
 type
   TProject = class

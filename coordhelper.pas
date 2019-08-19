@@ -52,6 +52,8 @@ begin
         point.Y := integer(vector.Y);
       end;
   end;
+
+  result := point;
 end;
 
 end.

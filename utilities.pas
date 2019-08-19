@@ -10,7 +10,9 @@ uses
 type
   TSingleArray = array of single;
 
-function Copy(Const A:Array of Single; aStart: Integer; ACount: Integer = 1): TSingleArray;
+function Copy(Const A: Array of Single; aStart: Integer; ACount: Integer = 1): TSingleArray;
+function Deg2Rad(degrees: single): single;
+function Rad2Deg(radians: single): single;
 
 implementation
 
@@ -25,6 +27,16 @@ Begin
   SetLength(Result, ACount);
   For I:= 0 To ACount - 1 do Result[I] := A[AStart + I];
 End;
+
+function Deg2Rad(degrees: single): single;
+begin
+  result := Pi * degrees / 180.0;
+end;
+
+function Rad2Deg(radians: single): single;
+begin
+  result := 180.0 / pi / radians;
+end;
 
 end.
 

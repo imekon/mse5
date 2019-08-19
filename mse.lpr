@@ -8,7 +8,7 @@ uses
   {$ENDIF}{$ENDIF}
   Interfaces, // this includes the LCL widgetset
   Forms, main, previewer, previewerbasic, props, propman, shape, propgridhelper,
-  proj, vector, projtreehelper, colour, coordhelper, graphic
+  proj, vector, projtreehelper, colour, coordhelper, graphic, utilities, matrix
   { you can add units after this };
 
 {$R *.res}

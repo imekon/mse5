@@ -34,6 +34,9 @@ type
 
 implementation
 
+uses
+  utilities;
+
 constructor TTriangle.Create;
 begin
   _pt1 := TVector.Create;
@@ -79,14 +82,15 @@ procedure TGraphic.AddTriangles(points: array of single);
 var
   i: integer;
   triangle: TTriangle;
+  chunk: array of single;
 
 begin
   i := 0;
   while i < Length(points) - 1 do
   begin
     triangle := TTriangle.Create;
-    triangle.SetPoints(Slice(points, 9));
-
+    chunk := Copy(points, i, 9);
+    triangle.SetPoints(chunk);
     inc(i, 9)
   end;
 end;

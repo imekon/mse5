@@ -21,6 +21,8 @@ type
     class function RotateY(angle: T): TMatrix; static;
     class function RotateZ(angle: T): TMatrix; static;
 
+    class function Multiply(a, b: TMatrix): TMatrix; static;
+
     property Data[x, y: integer]: T read GetData;
   end;
 
@@ -72,18 +74,53 @@ begin
 end;
 
 class function TMatrix.RotateX(angle: T): TMatrix;
-begin
+var
+  sinA, cosA: single;
 
+begin
+  sinA := sin(angle);
+  cosA := cos(angle);
+
+  result := TMatrix.Identity;
+  result._data[1, 1] := cosA;
+  result._data[2, 1] := -sinA;
+  result._data[1, 2] := sinA;
+  result._data[2, 2] := cosA;
 end;
 
 class function TMatrix.RotateY(angle: T): TMatrix;
-begin
+var
+  sinA, cosA: single;
 
+begin
+  sinA := sin(angle);
+  cosA := cos(angle);
+
+  result := TMatrix.Identity;
+  result._data[0, 0] := cosA;
+  result._data[2, 0] := sinA;
+  result._data[0, 2] := -sinA;
+  result._data[2, 2] := cosA;
 end;
 
 class function TMatrix.RotateZ(angle: T): TMatrix;
-begin
+var
+  sinA, cosA: single;
 
+begin
+  sinA := sin(angle);
+  cosA := cos(angle);
+
+  result := TMatrix.Identity;
+  result._data[0, 0] := cosA;
+  result._data[1, 0] := -sinA;
+  result._data[0, 1] := sinA;
+  result._data[1, 1] := cosA;
+end;
+
+class function TMatrix.Multiply(a, b: TMatrix): TMatrix;
+begin
+  result := TMatrix.Identity;
 end;
 
 end.

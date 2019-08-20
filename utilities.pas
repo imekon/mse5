@@ -18,7 +18,7 @@ implementation
 
 function Copy(Const A:Array of Single; aStart: Integer; ACount: Integer = 1): TSingleArray;
 var
-  I:Integer;
+  I: Integer;
 
 Begin
   SetLength(result, 0);

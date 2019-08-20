@@ -13,7 +13,7 @@ type
     _x, _y, _z: single;
   public
     constructor Create; overload;
-    constructor Create(x, y, z: single); overload;
+    constructor Create(ax, ay, az: single); overload;
     destructor Destroy; override;
 
     class function GetDescription(vector: TVector): string;
@@ -34,11 +34,11 @@ begin
   _z := 0.0;
 end;
 
-constructor TVector.Create(x, y, z: single);
+constructor TVector.Create(ax, ay, az: single);
 begin
- _x := x;
- _y := y;
- _z := z;
+ _x := ax;
+ _y := ay;
+ _z := az;
 end;
 
 destructor TVector.Destroy;

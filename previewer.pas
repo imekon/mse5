@@ -10,8 +10,14 @@ uses
 type
   TPreviewerView = (pvCamera, pvTop, pvBottom, pvFront, pvBack, pvLeft, pvRight);
 
+  { TPreviewer }
+
   TPreviewer = class
+  private
+    procedure SetX(AValue: integer);
+    procedure SetY(AValue: integer);
   protected
+    _x, _y: integer;
     _view: TPreviewerView;
     _paintBox: TPaintBox;
     procedure SetView(aView: TPreviewerView);
@@ -24,6 +30,8 @@ type
     class function GetViewDescription(view: TPreviewerView): string; static;
 
     property View: TPreviewerView read _view write SetView;
+    property X: integer read _x write SetX;
+    property Y: integer read _y write SetY;
   end;
 
 implementation
@@ -37,6 +45,20 @@ end;
 destructor TPreviewer.Destroy;
 begin
   inherited;
+end;
+
+procedure TPreviewer.SetX(AValue: integer);
+begin
+  if _x = AValue then Exit;
+  _x := AValue;
+  _paintBox.Refresh;
+end;
+
+procedure TPreviewer.SetY(AValue: integer);
+begin
+  if _y = AValue then Exit;
+  _y := AValue;
+  _paintBox.Refresh;
 end;
 
 procedure TPreviewer.SetView(aView: TPreviewerView);

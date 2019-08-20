@@ -8,10 +8,15 @@ uses
   Classes, SysUtils;
 
 type
+
+  { TMatrix }
+
   generic TMatrix<T> = class
+  private
   protected
     _data: array [0..3, 0..3] of T;
     function GetData(x, y: integer): T;
+    procedure SetData(x, y: integer; AValue: T);
   public
     constructor Create;
     class function Identity: TMatrix; static;
@@ -23,7 +28,7 @@ type
 
     class function Multiply(a, b: TMatrix): TMatrix; static;
 
-    property Data[x, y: integer]: T read GetData;
+    property Data[x, y: integer]: T read GetData write SetData;
   end;
 
   TSingleMatrix = specialize TMatrix<single>;
@@ -39,6 +44,11 @@ begin
   for y := 0 to 3 do
     for x := 0 to 3 do
       _data[x, y] := 0;
+end;
+
+procedure TMatrix.SetData(x, y: integer; AValue: T);
+begin
+  _data[x, y] := avalue;
 end;
 
 function TMatrix.GetData(x, y: integer): T;
@@ -119,8 +129,26 @@ begin
 end;
 
 class function TMatrix.Multiply(a, b: TMatrix): TMatrix;
+var
+  i, j, k: integer;
+  sum: single;
+
 begin
   result := TMatrix.Identity;
+
+  for i := 0 to 3 do
+  begin
+    for j := 0 to 3 do
+    begin
+      sum := 0;
+      for k := 0 to 3 do
+      begin
+        sum := sum + a.Data[i, k] + b.Data[j, k];
+      end;
+      result.Data[i, j] := sum;
+    end;
+  end;
+
 end;
 
 end.
